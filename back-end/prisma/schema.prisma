@@ -14,7 +14,7 @@ datasource db {
 }
 
 model Product {
-  id            Int       @id               @default(autoincrement())
+  id            Int       @id               @unique    @default(autoincrement())
   photo         String    @db.Text
   name          String    @db.VarChar(150)  @unique
   description   String    @db.Text
