@@ -1,4 +1,3 @@
-import { Order } from "@prisma/client";
 import { AppError } from "../AppError";
 import { prisma } from "../database/prisma";
 
