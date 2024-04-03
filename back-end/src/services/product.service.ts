@@ -24,6 +24,55 @@ class ProductService {
         
         return products
     }
+
+    async retrive(id: number): Promise<Product> {
+        const findProduct = await prisma.product.findUnique({
+            where: {
+                id
+            }
+        })
+
+        if(!findProduct) throw new Error("not found")
+        
+        return findProduct
+    }
+    
+    async update(id: number, productUpdate: TrequestProduct): Promise<Product> {
+        const findProduct = await prisma.product.findUnique({
+            where: {
+                id
+            }
+        })
+        
+        if(!findProduct) throw new Error("not found")
+        
+        const productUpdated = await prisma.product.update({
+            where: {
+                id
+            },
+            data: productUpdate
+        })
+
+        return productUpdated
+    }
+    
+    async destroy(id: number): Promise<void> {
+        const findProduct = await prisma.product.findUnique({
+            where: {
+                id
+            }
+        })
+
+        if(!findProduct) throw new Error("not found")
+
+        await prisma.product.delete({
+            where: {
+                id
+            }
+        })
+
+        return
+    }
 }
 
 export const productService = new ProductService()
