@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const product = z.object({
+export const Product = z.object({
     id: z.number().positive(),
     photo: z.string(),
     name: z.string().min(3, "Nome do produto é obrigatorio.").max(150, "Nome do produto tem que ter no máximo 150 caracteres."),
@@ -9,4 +9,4 @@ export const product = z.object({
     quanty: z.number().default(100)
 })
 
-export const requestProduct = product.omit({ id: true })
+export const requestProduct = Product.omit({ id: true })

@@ -1,5 +1,5 @@
 import { Product } from "@prisma/client";
-import { TrequestProduct } from "../interfaces/interface.product";
+import { TrequestProduct } from "../interfaces/product.interface";
 import { prisma } from "../database/prisma";
 
 class ProductService {
