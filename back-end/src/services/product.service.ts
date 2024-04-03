@@ -1,9 +1,8 @@
-import { Product } from "@prisma/client";
 import { TrequestProduct } from "../interfaces/product.interface";
 import { prisma } from "../database/prisma";
 
 class ProductService {
-    async create(product: TrequestProduct): Promise<Product>{
+    async create(product: TrequestProduct): Promise<any>{
         const findProduct = await prisma.product.findUnique({
             where: {
                 name: product.name
@@ -19,13 +18,13 @@ class ProductService {
         return productCreated
     }
 
-    async read(): Promise<Product[]> {
+    async read(): Promise<any[]> {
         const products = await prisma.product.findMany()
         
         return products
     }
 
-    async retrive(id: number): Promise<Product> {
+    async retrive(id: number): Promise<any> {
         const findProduct = await prisma.product.findUnique({
             where: {
                 id
@@ -37,7 +36,7 @@ class ProductService {
         return findProduct
     }
     
-    async update(id: number, productUpdate: TrequestProduct): Promise<Product> {
+    async update(id: number, productUpdate: TrequestProduct): Promise<any> {
         const findProduct = await prisma.product.findUnique({
             where: {
                 id
