@@ -29,7 +29,7 @@ model Order {
   id                Int             @id             @unique     @default(autoincrement())
   status            PaymentStatus   @default(ANALYSIS)
   payment_method    PaymentMethod
-  product           Product         @relation(fields: [product_id], references: [id], onDelete: SetDefault)
+  product           Product         @relation(fields: [product_id], references: [id], onDelete: Cascade)
   product_id        Int
   created_at        DateTime        @default(now())
   updated_at        DateTime        @updatedAt
