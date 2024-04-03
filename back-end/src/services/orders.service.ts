@@ -22,8 +22,10 @@ class OrderService {
     }
 
     async read() {
+        /*
         const orders = await prisma.order.findFirst()
         return orders
+        */
     }
 }
 
