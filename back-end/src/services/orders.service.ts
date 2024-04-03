@@ -2,6 +2,7 @@ import { prisma } from "../database/prisma";
 
 class OrderService {
     async create(idProduct: number) {
+        /*
         const findProduct = await prisma.product.findUnique({
             where: {
                 id: idProduct
@@ -17,6 +18,7 @@ class OrderService {
         })
 
         return myOrder
+        */
     }
 
     async read() {
