@@ -20,6 +20,17 @@ model Product {
   description   String    @db.Text
   price         Decimal   @db.Money
   quanty        Int       @default(100)
+  orders        Order[]   
 
   @@map("products")
+}
+
+model Order {
+  id            Int       @id             @unique     @default(autoincrement())
+  product       Product   @relation(fields: [product_id], references: [id], onDelete: SetDefault)
+  product_id    Int
+  created_at    DateTime  @default(now())
+  updated_at    DateTime  @updatedAt
+
+  @@map("orders")
 }
