@@ -10,7 +10,7 @@ class OrderService {
         
         if(!findProduct) throw new Error("Erro")
 
-        const order = await prisma.order.create({
+        const myOrder = await prisma.order.create({
             data: {
                 product_id: idProduct
             },
@@ -19,7 +19,7 @@ class OrderService {
             }
         })
 
-        return order
+        return myOrder
     }
 
     async read() {
