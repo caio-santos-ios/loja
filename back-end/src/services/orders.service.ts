@@ -4,11 +4,13 @@ import { prisma } from "../database/prisma";
 
 class OrderService {
     async create(order: any): Promise<any> {
+        /*
         const myOrder = await prisma.order.create({
             data: { ...order }
         })
         
         return myOrder
+        */
     }
 
     async read() {
