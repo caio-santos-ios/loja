@@ -1,4 +1,3 @@
-import { AppError } from "../AppError";
 import { prisma } from "../database/prisma";
 
 class OrderService {
