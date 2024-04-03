@@ -14,6 +14,7 @@ class OrderService {
     }
 
     async read() {
+        /*
         const orders = await prisma.order.findMany({
             include: {
                 product: true
@@ -21,9 +22,11 @@ class OrderService {
         })
         
         return orders
+        */
     }
 
-    async retrive(id: number): Promise<Order> {
+    async retrive(id: number): Promise<any> {
+        /*
         const order = await prisma.order.findUnique({
             where: {
                 id
@@ -33,6 +36,7 @@ class OrderService {
         if(!order) throw new AppError("not found", 404)
 
         return order
+        */
     }
 }
 
