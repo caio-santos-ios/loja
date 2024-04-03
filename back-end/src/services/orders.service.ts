@@ -1,4 +1,4 @@
-import { prisma } from "../database/prisma"
+import { prisma } from "../database/prisma";
 
 class OrderService {
     async create(idProduct: number) {
@@ -13,9 +13,6 @@ class OrderService {
         const myOrder = await prisma.order.create({
             data: {
                 product_id: idProduct
-            },
-            include: {
-                product: true
             }
         })
 
