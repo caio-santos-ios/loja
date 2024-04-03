@@ -3,8 +3,6 @@ import { prisma } from "../database/prisma";
 
 class ProductService {
     async create(product: TrequestProduct): Promise<any>{
-        const teste = await prisma.order.findMany()
-
         const findProduct = await prisma.product.findUnique({
             where: {
                 name: product.name
