@@ -1,23 +1,14 @@
 import { Order } from "@prisma/client";
 import { AppError } from "../AppError";
 import { prisma } from "../database/prisma";
-import { TrequestOrder } from "../interfaces/order.interfaces";
 
 class OrderService {
     async create(order: any): Promise<any> {
-        
         const myOrder = await prisma.order.create({
             data: { ...order }
         })
-        console.log(myOrder)
-        /*
-        const findProduct = await prisma.product.findUnique({
-            where: {
-                id
-            }
-        })
-        */
-        return order
+        
+        return myOrder
     }
 
     async read() {
