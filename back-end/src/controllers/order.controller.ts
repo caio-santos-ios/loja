@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
 import { orderService } from "../services/order.service";
+import { accountService } from "../services/account.service";
 
 class OrderController {
     async create(req: Request, res: Response) {
-        const order = await orderService.create(req.body)
+        const order = await orderService.create(req.body, Number(res.locals.verifytedToken.id))
         
         return res.status(201).json(order)
     }
@@ -18,6 +19,12 @@ class OrderController {
         const order = await orderService.retrive(Number(req.params.id))
 
         return res.status(200).json(order)
+    }
+
+    async destroy(req: Request, res: Response): Promise<Response> {
+        await orderService.destroy(Number(req.params.id))
+
+        return res.status(204).json()
     }
 }
 

@@ -21,7 +21,8 @@ model Account {
   accountActivated          Boolean   @default(false)
   tokenResetPassword        String?   @db.Text
   tokenConfirmationAccount  String?   @db.Text          @unique
-  role                      Role      @default(USER)          
+  role                      Role      @default(USER)     
+  orders                    Order[]     
   created_at                DateTime  @db.Timestamp(6)  @default(now())
   updated_at                DateTime  @db.Timestamp(6)  @updatedAt
 
@@ -46,6 +47,8 @@ model Order {
   payment_method    PaymentMethod
   product           Product         @relation(fields: [product_id], references: [id], onDelete: Cascade)
   product_id        Int
+  account           Account         @relation(fields: [account_id], references: [id], onDelete: Cascade)
+  account_id        Int             
   created_at        DateTime        @default(now())
   updated_at        DateTime        @updatedAt
 
