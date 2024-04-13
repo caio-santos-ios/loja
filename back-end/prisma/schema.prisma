@@ -23,34 +23,38 @@ model Account {
   tokenConfirmationAccount  String?   @db.Text          @unique
   role                      Role      @default(USER)     
   orders                    Order[]     
-  created_at                DateTime  @db.Timestamp(6)  @default(now())
-  updated_at                DateTime  @db.Timestamp(6)  @updatedAt
+  created_at                DateTime  @db.Timestamptz(3)  @default(now())
+  updated_at                DateTime  @db.Timestamptz(3)  @updatedAt
 
   @@map("accounts")
 }
 
 model Product {
-  id            Int       @id               @unique    @default(autoincrement())
-  photo         String    @db.Text
-  name          String    @db.VarChar(150)  @unique
-  description   String    @db.Text
-  price         Decimal   @db.Money
-  quanty        Int       @default(100)
+  id            Int             @id               @unique    @default(autoincrement())
+  photo         String          @db.Text
+  name          String          @db.VarChar(150)  @unique
+  description   String          @db.Text
+  price         Decimal         @db.Money
+  quanty        Int             @default(100)
   orders        Order[]   
+  created_at    DateTime        @default(now())     @db.Timestamptz(3)
+  updated_at    DateTime        @updatedAt          @db.Timestamptz(3)
 
   @@map("products")
 }
 
 model Order {
-  id                Int             @id             @unique     @default(autoincrement())
+  id                Int             @id                 @unique     @default(autoincrement())
   status            PaymentStatus   @default(ANALYSIS)
   payment_method    PaymentMethod
   product           Product         @relation(fields: [product_id], references: [id], onDelete: Cascade)
   product_id        Int
   account           Account         @relation(fields: [account_id], references: [id], onDelete: Cascade)
+  quantyProduct     Int             @default(0)
+  amount            Decimal         @db.Decimal(10, 2)  @default(0)
   account_id        Int             
-  created_at        DateTime        @default(now())
-  updated_at        DateTime        @updatedAt
+  created_at        DateTime        @default(now())     @db.Timestamptz(3)
+  updated_at        DateTime        @updatedAt          @db.Timestamptz(3)
 
   @@map("orders")
 }

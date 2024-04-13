@@ -13,6 +13,6 @@ export const handlerErro = (err: any, req: Request, res: Response, next: NextFun
     if(err instanceof PrismaClientKnownRequestError) return res.status(400).json({ message: err.message })
     
     if(err instanceof JsonWebTokenError) return res.status(401).json({ message: err.message })
-
+    console.log(err)
     return res.status(500).json({ message: "Internal server error." })
 }

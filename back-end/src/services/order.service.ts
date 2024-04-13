@@ -3,23 +3,12 @@ import { prisma } from "../database/prisma";
 import { TresponseOrder } from "../interfaces/order.interface";
 
 class OrderService {
-    async create(order: any, accountId: number): Promise<any> {
-        const findProduct = await prisma.product.findFirst({
-            where: {
-                id: order.id
-            }
+    async create(order: any): Promise<any> {
+        const createdOrders = await prisma.order.createMany({
+            data: order,
         })
 
-        if(!findProduct) throw new AppError("not found product", 404)
-
-        const myOrder = await prisma.order.create({
-            data: {
-                account_id: accountId,
-                ...order
-            }
-        })
-
-        return myOrder
+        return createdOrders
     }
 
     async read() {
@@ -36,6 +25,9 @@ class OrderService {
         const findOrder = await prisma.order.findUnique({
             where: {
                 id
+            },
+            include: {
+                product: true
             }
         })
         

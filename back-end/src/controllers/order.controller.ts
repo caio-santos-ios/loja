@@ -4,7 +4,7 @@ import { accountService } from "../services/account.service";
 
 class OrderController {
     async create(req: Request, res: Response) {
-        const order = await orderService.create(req.body, Number(res.locals.verifytedToken.id))
+        const order = await orderService.create(req.body)
         
         return res.status(201).json(order)
     }
