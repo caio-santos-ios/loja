@@ -14,12 +14,16 @@ datasource db {
 }
 
 model Account {
-  id            Int       @id               @unique   @default(autoincrement())
-  name          String    @db.VarChar(150)
-  email         String    @unique
-  password      String    
-  created_at     DateTime  @db.Timestamp(6)  @default(now())
-  updated_at     DateTime  @db.Timestamp(6)  @updatedAt
+  id                        Int       @id               @unique   @default(autoincrement())
+  name                      String    @db.VarChar(150)
+  email                     String    @unique
+  password                  String    
+  accountActivated          Boolean   @default(false)
+  tokenResetPassword        String?   @db.Text
+  tokenConfirmationAccount  String?   @db.Text          @unique
+  role                      Role      @default(USER)          
+  created_at                DateTime  @db.Timestamp(6)  @default(now())
+  updated_at                DateTime  @db.Timestamp(6)  @updatedAt
 
   @@map("accounts")
 }
@@ -59,3 +63,8 @@ enum PaymentMethod {
   BOLETO
   CARTAO
 } 
+
+enum Role {
+  ADMIN
+  USER
+}

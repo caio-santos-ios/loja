@@ -11,3 +11,4 @@ export const account = z.object({
 
 export const requestAccount = account.omit({ id: true, created_at: true, updated_at: true })
 export const requestAccountUpdate = requestAccount.optional()
+export const requestAccountLogin = account.pick({ email: true, password: true })

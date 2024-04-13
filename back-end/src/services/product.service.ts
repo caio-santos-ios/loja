@@ -1,5 +1,6 @@
 import { TrequestProduct } from "../interfaces/product.interface";
 import { prisma } from "../database/prisma";
+import { AppError } from "../AppError";
 
 class ProductService {
     async create(product: TrequestProduct): Promise<any>{
@@ -9,7 +10,7 @@ class ProductService {
             }
         })
 
-        if(findProduct) throw new Error("")
+        if(findProduct) throw new AppError("Produto já cadastrado.", 409)
 
         const productCreated = await prisma.product.create({
             data: product
