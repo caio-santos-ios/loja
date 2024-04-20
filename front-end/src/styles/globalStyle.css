@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --primary-color: #252326;
+    --secundary-color: #4f784e;
+
+    --color-1: #939473 ;
+    --color-2: #4f784e ;
+    --color-3: #2d5e4c ;
+    --color-4: #13444d ;
+    --color-5: #252326 ;
+}
+
+@layer utilities {
+    .header {
+        background-color: var(--primary-color);
+        color: #ffffff;
+        height: 5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .main_default {}
+
+    .section_default {
+        margin: 0 auto;
+    }
+}
